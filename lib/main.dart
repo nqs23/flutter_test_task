@@ -54,8 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: GestureDetector(
         onTap: () => setState(() => _bg = _randomColor()),
+        onLongPress: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('🐣 Easter egg unlocked!',textAlign: TextAlign.center,),
+              duration: Duration(seconds: 1),
+            ),
+          );
+          setState(() => _bg = Colors.white);
+        },
         child: Container(
-          // color: Color.fromARGB(x, y, z, c),
           color: _bg,
           child: Center(
             child: Column(
