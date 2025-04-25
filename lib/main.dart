@@ -29,22 +29,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late Color bgColor;
-
+  final _random = Random();
   @override
   void initState() {
     super.initState();
     bgColor = _randomColor();
   }
 
-  Color _randomColor() {
-    final r = Random();
-    return Color.fromARGB(
-      r.nextInt(256),
-      r.nextInt(256),
-      r.nextInt(256),
-      r.nextInt(256),
-    );
-  }
+  Color _randomColor() => Color(0xFF000000 |
+      _random.nextInt(
+          0x01000000)); //adding 0xFF000000 to make sure the color is opaque
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
         onLongPress: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('🐣 Easter egg unlocked!',textAlign: TextAlign.center,),
+              content: Text(
+                '🐣 Easter egg unlocked!',
+                textAlign: TextAlign.center,
+              ),
               duration: Duration(seconds: 1),
             ),
           );
