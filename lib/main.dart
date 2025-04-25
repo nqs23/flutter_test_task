@@ -11,32 +11,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter test task',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
+  const MyHomePage({super.key});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Color _bg;
+  late Color bgColor;
 
   @override
   void initState() {
     super.initState();
-    _bg = _randomColor();
+    bgColor = _randomColor();
   }
 
   Color _randomColor() {
@@ -53,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onTap: () => setState(() => _bg = _randomColor()),
+        onTap: () => setState(() => bgColor = _randomColor()),
         onLongPress: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -61,10 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
               duration: Duration(seconds: 1),
             ),
           );
-          setState(() => _bg = Colors.white);
+          setState(() => bgColor = Colors.white);
         },
         child: Container(
-          color: _bg,
+          color: bgColor,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
